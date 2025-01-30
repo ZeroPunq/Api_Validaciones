@@ -2,6 +2,7 @@ package org.example.api.Modelo;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Pattern;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.ColumnDefault;
@@ -24,14 +25,14 @@ public class Ejemplar {
     @JoinColumn(name = "isbn", nullable = false)
     private Libro isbn;
 
+    @NotNull
     @ColumnDefault("'Disponible'")
-    @Lob
-    @Column(name = "estado")
+    @Pattern(regexp = "^(disponible|prestado|dañado)$", message = "El estado solo puede ser: disponible, prestado o dañado")
+    @Column(name = "estado", nullable = false)
     private String estado;
 
 
-    public Ejemplar() {
-    }
+    public Ejemplar() {}
 
     public Ejemplar(Integer id, String estado, Libro isbn) {
         this.id = id;

@@ -3,6 +3,7 @@ package org.example.api.Modelo;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.Setter;
@@ -21,6 +22,7 @@ public class Usuario {
 
     @Size(max = 15)
     @NotNull
+    @Pattern(regexp = "^[0-9]{8}[A-Z]$", message = "El DNI no es valido")
     @Column(name = "dni", nullable = false, length = 15)
     private String dni;
 
@@ -31,16 +33,19 @@ public class Usuario {
 
     @Size(max = 100)
     @NotNull
+    @Pattern(regexp = "[A-Za-z0-9]+@gmail\\.com", message = "El email debe ser de Gmail")
+    //@Pattern(regexp = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,6}$", message = "El email no es válido.")
     @Column(name = "email", nullable = false, length = 100)
     private String email;
 
     @Size(max = 255)
     @NotNull
+    @Pattern(regexp = "^[a-zA-Z0-9]{4,12}$", message = "La contraseña debe tener entre 4 y 12 caracteres alfanuméricos.")
     @Column(name = "password", nullable = false)
     private String password;
 
     @NotNull
-    @Lob
+    @Pattern(regexp = "^(normal|administrador)$", message = "El tipo de usuario solo puede ser: normal o administrador")
     @Column(name = "tipo", nullable = false)
     private String tipo;
 
