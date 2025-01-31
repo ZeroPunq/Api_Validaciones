@@ -14,7 +14,7 @@ import lombok.Setter;
 public class Libro {
     @Id
     @Size(max = 20)
-    @Pattern(regexp = "^(97(8|9))?\\d{9}(\\d|X)$", message = "ISBN inválido, debe seguir el formato ISBN-13")
+    @Pattern(regexp = "^(978|979)-?\\d{1,5}-?\\d{1,7}-?\\d{1,6}-?\\d$", message = "El ISBN debe ser un código válido de 13 dígitos.")
     @Column(name = "isbn", nullable = false, length = 20)
     private String isbn;
 

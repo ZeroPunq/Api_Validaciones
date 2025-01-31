@@ -33,7 +33,7 @@ public class Usuario {
 
     @Size(max = 100)
     @NotNull
-    @Pattern(regexp = "[A-Za-z0-9]+@gmail\\.com", message = "El email debe ser de Gmail")
+    @Pattern(regexp = "^[a-zA-Z0-9._%+-]+@gmail\\.com$", message = "El email debe ser de Gmail")
     //@Pattern(regexp = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,6}$", message = "El email no es válido.")
     @Column(name = "email", nullable = false, length = 100)
     private String email;
